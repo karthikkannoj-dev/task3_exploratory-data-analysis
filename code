@@ -1,0 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("/content/archive.zip")
+df.head()
+df.info()
+df.describe()
+df.isnull().sum()
+df['release_year'].hist(bins=20)
+plt.title("Distribution of Release Year")
+plt.show()
+sns.heatmap(corr, annot=True, cmap=None)
+
+
+
+# The original code had an error because the column 'type' does not exist in the DataFrame.
+# Replacing 'type' with 'country' as an example of plotting a categorical column.
+# If your dataset contains a column for 'Movies vs TV Shows' under a different name,
+# please replace 'country' with that column name.
+sns.countplot(x='country', data=df, order=df['country'].value_counts().index[:10]) # Limiting to top 10 countries for readability
+plt.title("Content by Country (Top 10)") # Updating title to reflect the change
+plt.xticks(rotation=45, ha='right') # Rotate labels for better readability
+plt.tight_layout() # Adjust layout to prevent labels from overlapping
+plt.show()
